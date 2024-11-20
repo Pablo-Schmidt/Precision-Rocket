@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    [SerializeField] float mainThrust = 100;
+
+    Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
-        
+      rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -21,6 +24,7 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
+            rb.AddRelativeForce(0,1,0 * mainThrust * Time.deltaTime);
             Debug.Log("SpaceBar was pressed");
         }
 
@@ -29,6 +33,7 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
+            rb.AddRelativeForce (1,0,0);
             Debug.Log("A Right was pressed");
         }
         if (Input.GetKey(KeyCode.D))
