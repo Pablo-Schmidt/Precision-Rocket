@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] float mainThrust = 100;
+    [SerializeField] float mainThrust = 100000f;
 
     Rigidbody rb;
     // Start is called before the first frame update
