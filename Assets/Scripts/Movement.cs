@@ -22,22 +22,23 @@ public class Movement : MonoBehaviour
 
     void ProcessThrust()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
-            rb.AddRelativeForce(0,1,0 * mainThrust * Time.deltaTime);
+            rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
             Debug.Log("SpaceBar was pressed");
         }
 
     }
     void ProcessRotation()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
-            rb.AddRelativeForce (1,0,0);
+            transform.Rotate(Vector3.forward);
             Debug.Log("A Right was pressed");
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
+            transform.Rotate(Vector3.back);
             Debug.Log("B Left was pressed");
         }
     }
