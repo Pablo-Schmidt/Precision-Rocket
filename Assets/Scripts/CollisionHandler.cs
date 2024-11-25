@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
+    AudioSource audioSource;
+    [SerializeField] float levelLoadDelay = 1f;
     void OnCollisionEnter(Collision other)
     {
         switch (other.gameObject.tag)
@@ -14,18 +16,45 @@ public class CollisionHandler : MonoBehaviour
                 Debug.Log("This is fuel");
                 break;
             case "Finish":
+                StartSuccessSequence();
                 Debug.Log("This is the Finish pad!");
                 break;
             default:
+                StartCrashSequence();
                 Debug.Log("Sorry you blew up");
-                ReloadLevel();
                 break;
-       }
-
-        void ReloadLevel()
-        {
-            SceneManager.LoadScene(0);
         }
     }
 
+    void StartSuccessSequence()
+    {
+        GetComponent<Movement>().enabled = true;
+
+    }
+
+    void StartCrashSequence()
+    {
+        // to do add sfx upon crash
+        //todo add particle effect upon crash
+        audioSource.Play();
+        GetComponent<Movement>().enabled = false;
+        Invoke("ReloadLevel", levelLoadDelay);
+    }
+
+    void LoadNextLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+        if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
+        {
+            nextSceneIndex = 0;
+        }
+        SceneManager.LoadScene(nextSceneIndex);
+    }
+
+    void ReloadLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
+    }
 }
