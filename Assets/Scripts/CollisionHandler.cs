@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,44 +6,61 @@ public class CollisionHandler : MonoBehaviour
 {
     AudioSource audioSource;
     [SerializeField] float levelLoadDelay = 1f;
-    void OnCollisionEnter(Collision other)
+    [SerializeField] AudioClip success;
+    [SerializeField] AudioClip crash;
+
+    //AudioSource audioSource;
+    bool isTransitioning = false;
+
+    void Start()
     {
-        switch (other.gameObject.tag)
-        {
-            case "Friendly":
-                Debug.Log("This is friendly");
-                break;
-            case "Fuel":
-                Debug.Log("This is fuel");
-                break;
-            case "Finish":
-                StartSuccessSequence();
-                Debug.Log("This is the Finish pad!");
-                break;
-            default:
-                StartCrashSequence();
-                Debug.Log("Sorry you blew up");
-                break;
-        }
+        audioSource = GetComponent<AudioSource>();
     }
 
+    void OnCollisionEnter(Collision other)
+    {
+        if (isTransitioning) { return; }
+        {
+            switch (other.gameObject.tag)
+            {
+                case "Friendly":
+
+                    Debug.Log("This is friendly");
+                    break;
+                case "Fuel":
+                    Debug.Log("This is fuel");
+                    break;
+                case "Finish":
+                    StartSuccessSequence();
+                    Debug.Log("This is the Finish pad!");
+                    break;
+                default:
+                    StartCrashSequence();
+                    Debug.Log("Sorry you blew up");
+                    break;
+            }
+        }
+      
+    }
     void StartSuccessSequence()
     {
+        isTransitioning = true;
+        audioSource.PlayOneShot(success);
         GetComponent<Movement>().enabled = true;
-
+        Invoke("LoadNextLevel", levelLoadDelay);
     }
 
     void StartCrashSequence()
     {
-        // to do add sfx upon crash
-        //todo add particle effect upon crash
-        audioSource.Play();
+        isTransitioning = true;
+        audioSource.PlayOneShot(crash);
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", levelLoadDelay);
     }
 
     void LoadNextLevel()
     {
+
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currentSceneIndex + 1;
         if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
@@ -57,4 +75,6 @@ public class CollisionHandler : MonoBehaviour
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
     }
+
 }
+

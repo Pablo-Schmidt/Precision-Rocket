@@ -493,6 +493,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelLoadDelay: 1
+  success: {fileID: 8300000, guid: b354d99016b6bb948bf3f94bc12fcddf, type: 3}
+  crash: {fileID: 8300000, guid: 56bbd669acc484b4cb72df4db72b6bad, type: 3}
 --- !u!1001 &6431841477393101881
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -501,6 +503,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1768704553441622529, guid: c6df1bee6d45a194eb56884dba1a62d1, type: 3}
+      propertyPath: mainEngine
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f236f9d80d6f6543803b7b5e19d33e5, type: 3}
     - target: {fileID: 3038072531830166639, guid: c6df1bee6d45a194eb56884dba1a62d1, type: 3}
       propertyPath: Loop
       value: 0
@@ -616,10 +622,6 @@ PrefabInstance:
     - target: {fileID: 6318135695164540261, guid: 3557a12f7bfe24646ae841e2133d8a3b, type: 3}
       propertyPath: m_Name
       value: LaunchingPad
-      objectReference: {fileID: 0}
-    - target: {fileID: 6318135695164540261, guid: 3557a12f7bfe24646ae841e2133d8a3b, type: 3}
-      propertyPath: m_TagString
-      value: Friendly
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

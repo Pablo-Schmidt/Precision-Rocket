@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1768704553441622529}
   - component: {fileID: 8111517048962116650}
   - component: {fileID: 3038072531830166639}
+  - component: {fileID: 5626655294590149711}
+  - component: {fileID: 6789169740914778194}
   m_Layer: 0
   m_Name: rocket
   m_TagString: Untagged
@@ -77,6 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainThrust: 1000
   rotationThrust: 50
+  mainEngine: {fileID: 8300000, guid: 4f236f9d80d6f6543803b7b5e19d33e5, type: 3}
 --- !u!65 &8111517048962116650
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -96,7 +99,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 6, y: 6, z: 6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &3038072531830166639
 AudioSource:
@@ -108,11 +111,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4f236f9d80d6f6543803b7b5e19d33e5, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -194,6 +197,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5626655294590149711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5429429102456427287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2900dea51c13e2b448145e41f91276d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelLoadDelay: 1
+  success: {fileID: 8300000, guid: b354d99016b6bb948bf3f94bc12fcddf, type: 3}
+  crash: {fileID: 8300000, guid: 56bbd669acc484b4cb72df4db72b6bad, type: 3}
+--- !u!114 &6789169740914778194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5429429102456427287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2900dea51c13e2b448145e41f91276d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelLoadDelay: 1
+  success: {fileID: 8300000, guid: b354d99016b6bb948bf3f94bc12fcddf, type: 3}
+  crash: {fileID: 8300000, guid: 56bbd669acc484b4cb72df4db72b6bad, type: 3}
 --- !u!1001 &1957948940020807169
 PrefabInstance:
   m_ObjectHideFlags: 0
